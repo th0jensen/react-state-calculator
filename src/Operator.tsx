@@ -8,10 +8,13 @@ export default function Operator({ operator, setOperator }: Props) {
         <div className="panel">
             <p>{operator}</p>
             <div className="numbers">
-                <button onClick={() => setOperator('+')}>+</button>
-                <button onClick={() => setOperator('-')}>-</button>
-                <button onClick={() => setOperator('*')}>*</button>
-                <button onClick={() => setOperator('÷')}>÷</button>
+                {['+', '-', '*', '÷'].map((operator) => (
+                    <button
+                        key={operator}
+                        onClick={() => setOperator(operator)}>
+                        {operator}
+                    </button>
+                ))}
             </div>
         </div>
     )

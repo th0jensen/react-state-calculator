@@ -9,30 +9,39 @@ export default function App() {
     const [secondValue, setSecondValue] = useState('')
     const [operator, setOperator] = useState('+')
     const [result, setResult] = useState(0)
+    const [store, setStore] = useState(0)
 
     function calculateTotal() {
         switch (operator) {
             case '+':
-                setResult(Number(firstValue) + Number(secondValue))
-                break
+                return setResult(Number(firstValue) + Number(secondValue))
             case '-':
-                setResult(Number(firstValue) - Number(secondValue))
-                break
+                return setResult(Number(firstValue) - Number(secondValue))
             case '*':
-                setResult(Number(firstValue) * Number(secondValue))
-                break
+                return setResult(Number(firstValue) * Number(secondValue))
             case '÷':
-                setResult(Number(firstValue) / Number(secondValue))
-                break
+                return setResult(Number(firstValue) / Number(secondValue))
         }
     }
 
     return (
         <div className="calculator">
-            <NumberPanel value={firstValue} setValue={setFirstValue} />
+            <NumberPanel
+                value={firstValue}
+                setValue={setFirstValue}
+                storedValue={store}
+            />
             <Operator operator={operator} setOperator={setOperator} />
-            <NumberPanel value={secondValue} setValue={setSecondValue} />
-            <Result calculateTotal={calculateTotal} result={result} />
+            <NumberPanel
+                value={secondValue}
+                setValue={setSecondValue}
+                storedValue={store}
+            />
+            <Result
+                calculateTotal={calculateTotal}
+                result={result}
+                setStore={setStore}
+            />
         </div>
     )
 }

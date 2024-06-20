@@ -1,38 +1,36 @@
 type Props = {
     value: string
     setValue: Function
+    storedValue: number
 }
 
-export default function NumberPanel({ value, setValue }: Props) {
-    function addValueToScreen(newValue: number) {
-        if (value === '0') {
-            setValue(`${newValue}`)
-        } else {
-            setValue(value + `${newValue}`)
-        }
+export default function NumberPanel({ value, setValue, storedValue }: Props) {
+    function addValueToScreen(newValue: number): string {
+        if (value === '0') return setValue(`${newValue}`)
+        else return setValue(value + `${newValue}`)
     }
 
     function isDisabled(): boolean {
-        if (value === '') {
-            return true
-        } else {
-            return false
-        }
+        if (value === '') return true
+        else return false
+    }
+
+    function retrieveValue() {
+        if (storedValue) return setValue(`${storedValue}`)
     }
 
     return (
         <div className="panel">
             <p>{value}</p>
             <div className="numbers">
-                <button onClick={() => addValueToScreen(1)}>1</button>
-                <button onClick={() => addValueToScreen(2)}>2</button>
-                <button onClick={() => addValueToScreen(3)}>3</button>
-                <button onClick={() => addValueToScreen(4)}>4</button>
-                <button onClick={() => addValueToScreen(5)}>5</button>
-                <button onClick={() => addValueToScreen(6)}>6</button>
-                <button onClick={() => addValueToScreen(7)}>7</button>
-                <button onClick={() => addValueToScreen(8)}>8</button>
-                <button onClick={() => addValueToScreen(9)}>9</button>
+                {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((number) => (
+                    <button
+                        key={number}
+                        onClick={() => addValueToScreen(number)}>
+                        {number}
+                    </button>
+                ))}
+                <button onClick={() => retrieveValue()}>M</button>
                 <button onClick={() => addValueToScreen(0)}>0</button>
                 <button onClick={() => setValue('')} disabled={isDisabled()}>
                     Clear
