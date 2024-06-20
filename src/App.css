@@ -28,6 +28,12 @@ html {
     min-width: 170px;
 }
 
+.equals-and-store {
+    display: grid;
+    grid-auto-flow: column;
+    gap: 4px;
+}
+
 .numbers {
     display: grid;
     grid-template-columns: repeat(3, 55px);

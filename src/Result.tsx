@@ -7,15 +7,14 @@ type Props = {
 export default function Result({ calculateTotal, result, setStore }: Props) {
     function storeValue() {
         if (result) return setStore(result)
-        console.log(setStore)
     }
 
     return (
         <div className="panel answer">
             <p>{result}</p>
-            <div>
+            <div className="equals-and-store">
                 <button onClick={() => calculateTotal()}>=</button>
-                <button onClick={() => storeValue()}>Store</button>
+                <button onClick={() => storeValue()}>MS</button>
             </div>
         </div>
     )
