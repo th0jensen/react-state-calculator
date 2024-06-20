@@ -5,8 +5,9 @@ type Props = {
 }
 
 export default function NumberPanel({ value, setValue, storedValue }: Props) {
-    function addValueToScreen(newValue: number): string {
-        if (value === '0') return setValue(`${newValue}`)
+    function addValueToScreen(newValue: string): string {
+        if (newValue === '.' && value.includes('.')) return value
+        if (value === '0' && newValue != '.') return setValue(`${newValue}`)
         else return setValue(value + `${newValue}`)
     }
 
@@ -26,15 +27,20 @@ export default function NumberPanel({ value, setValue, storedValue }: Props) {
                 {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((number) => (
                     <button
                         key={number}
-                        onClick={() => addValueToScreen(number)}>
+                        onClick={() => addValueToScreen(number.toString())}>
                         {number}
                     </button>
                 ))}
-                <button onClick={() => retrieveValue()}>M</button>
-                <button onClick={() => addValueToScreen(0)}>0</button>
+                <button
+                    onClick={() => addValueToScreen('.')}
+                    disabled={isDisabled()}>
+                    .
+                </button>
+                <button onClick={() => addValueToScreen('0')}>0</button>
                 <button onClick={() => setValue('')} disabled={isDisabled()}>
                     Clear
                 </button>
+                <button onClick={() => retrieveValue()}>M</button>
             </div>
         </div>
     )
