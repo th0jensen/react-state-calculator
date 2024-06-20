@@ -1,0 +1,15 @@
+.equals-and-store {
+    display: grid;
+    grid-auto-flow: column;
+    gap: 4px;
+}
+
+.answer {
+    color: tomato;
+    font-style: italic;
+}
+
+.answer button {
+    width: 100%;
+    height: 40px;
+}

@@ -1,3 +1,5 @@
+import './styles/Result.css'
+
 type Props = {
     calculateTotal: Function
     result: number

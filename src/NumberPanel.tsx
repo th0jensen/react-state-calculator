@@ -1,3 +1,5 @@
+import './styles/NumberPanel.css'
+
 type Props = {
     value: string
     setValue: Function
